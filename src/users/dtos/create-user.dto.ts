@@ -2,17 +2,32 @@ import { IsBoolean, IsEmail, IsNotEmpty, IsOptional, IsString, IsStrongPassword,
 
 
 export class CreateUserDto {
+    static readonly MIN_PASSWORD_LENGTH = 8;
+
 
     @IsString({
-        message: 'Name must be a string'
+        message: 'First name must be a string'
     })
     @IsNotEmpty({
-        message: 'Name must not be empty'
+        message: 'First name must not be empty'
     })
     @MinLength(3, {
-        message: 'Name must be at least 3 characters long'
+        message: 'First name must be at least 3 characters long'
     })
-    name: string;
+    firstName: string;
+
+
+
+    @IsString({
+        message: 'Last name must be a string'
+    })
+    @IsNotEmpty({
+        message: 'Last name must not be empty'
+    })
+    @MinLength(3, {
+        message: 'Last name must be at least 3 characters long'
+    })
+    lastName: string;
 
 
 
@@ -33,18 +48,14 @@ export class CreateUserDto {
 
 
 
-    @MinLength(6, {
-        message: 'Password must be at least 6 characters long'
+
+
+    @MinLength(CreateUserDto.MIN_PASSWORD_LENGTH, {
+        message: `Password must be at least ${CreateUserDto.MIN_PASSWORD_LENGTH} characters long`
     })
     @IsStrongPassword({}, {
         message: 'Please enter a strong password'
     })
     password: string;
 
-
-
-    @IsBoolean({
-        message: 'Married must be a boolean value'
-    })
-    isMarried: boolean;
 }
