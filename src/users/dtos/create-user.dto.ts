@@ -48,8 +48,6 @@ export class CreateUserDto {
 
 
 
-
-
     @MinLength(CreateUserDto.MIN_PASSWORD_LENGTH, {
         message: `Password must be at least ${CreateUserDto.MIN_PASSWORD_LENGTH} characters long`
     })
